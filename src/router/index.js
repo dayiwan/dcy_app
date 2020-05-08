@@ -4,7 +4,7 @@ import layout from '../views/Layout/Layout.vue';
 
 Vue.use(VueRouter)
 
-const routes = [{
+export const routes = [{
     path: '/',
     redirect: '/home',
     name: 'index',

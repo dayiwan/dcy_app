@@ -7,7 +7,7 @@
 <style lang="scss">
 footer {
   width: 100%;
-  height: 20px;
+  height: 40px;
   background-color: chartreuse;
 }
 </style>
