@@ -33,10 +33,10 @@ export default {
 
   .sidebar-item {
     display: block;
-    padding: 15px;
+    padding: 15px 30px;
     width: 100%;
-    text-align: center;
     color: white;
+    text-align: left;
     position: relative;
 
     &::before {
