@@ -1,30 +1,27 @@
 <template>
   <div id="layout">
-    <Header />
+    <SideBar />
     <router-view id="container"></router-view>
-    <Footer />
   </div>
 </template>
 
 <script>
-import Header from "./Header";
-import Footer from "./Footer";
+import SideBar from "./SideBar";
 export default {
   components: {
-    Header,
-    Footer
+    SideBar,
   }
 };
 </script>
 
 <style lang="scss">
 #layout {
-  @include flex(column, flex-start);
+  @include flex(flex-start);
   height: 100%;
 }
 #container {
-  width: 100%;
   flex: 1;
+  height: 100%;
   overflow: auto;
 }
 </style>
