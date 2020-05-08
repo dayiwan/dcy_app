@@ -1,5 +1,6 @@
 <template>
   <div id="sidebar">
+    <img src="@/assets/logo.png">
     <router-link 
     class="sidebar-item" 
     v-for="(route, index) in routes" 
@@ -30,13 +31,18 @@ export default {
   width: 200px;
   height: 100%;
   background-color: black;
+  text-align: left;
+
+  img {
+    height: 60px;
+    margin-left: 20px;
+  }
 
   .sidebar-item {
     display: block;
     padding: 15px 30px;
     width: 100%;
     color: white;
-    text-align: left;
     position: relative;
 
     &::before {
