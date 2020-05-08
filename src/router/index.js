@@ -5,18 +5,24 @@ import layout from '../views/Layout/Layout.vue';
 Vue.use(VueRouter)
 
 export const routes = [{
-    path: '/',
-    redirect: '/home',
-    name: 'index',
+    path: '',
+    name: 'home',
     component: layout,
     children: [{
         path: '/home',
         component: () =>
-            import ('@/views/Home/Home.vue')
-    }, {
+            import ('@/views/Home/Home.vue'),
+        meta: { name: '首页', icon: 's-home' }
+    }]
+}, {
+    path: '',
+    name: 'index',
+    component: layout,
+    children: [{
         path: '/dataResource',
         component: () =>
-            import ('@/views/DataResource/DataResource.vue')
+            import ('@/views/DataResource/DataResource.vue'),
+        meta: { name: '数据资源', icon: 's-grid' }
     }]
 }]
 
