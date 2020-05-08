@@ -12,11 +12,15 @@ export const routes = [{
     children: [{
         path: '/home',
         component: () =>
-            import ('@/views/Home/Home.vue')
+            import('@/views/Home/Home.vue')
     }, {
         path: '/dataResource',
         component: () =>
-            import ('@/views/DataResource/DataResource.vue')
+            import('@/views/DataResource/DataResource.vue')
+    }, {
+        path: '/governanceReport',
+        component: () =>
+            import('@/views/GovernanceReport/GovernanceReport.vue')
     }]
 }]
 
