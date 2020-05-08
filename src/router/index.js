@@ -8,6 +8,7 @@ export const routes = [{
     path: '',
     name: 'home',
     component: layout,
+    redirect: '/home',
     children: [{
         path: '/home',
         component: () =>
