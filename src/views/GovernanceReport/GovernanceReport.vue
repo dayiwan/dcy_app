@@ -1,19 +1,11 @@
 <template>
   <div class="main font-style">
-    <el-row>
-      <el-col :span="4" align="left">
-        <span>更新时间：2020年5月8日</span>
-      </el-col>
-      <el-col :span="4" align="left">
-        <span>更新周期：天</span>
-      </el-col>
-    </el-row>
     <el-divider></el-divider>
     <el-row>
       <el-tabs value="first" type="card" @tab-click="changeTab">
         <el-tab-pane label="中央领导" name="first">
           <el-row>
-            <el-col :span="2" v-for="leader in centerLeadersList" :key="leader">
+            <el-col :span="2" v-for="(leader,index)  in centerLeadersList" :key="index">
               <div>
                 <el-image style="width: 100px; height: 100px" :src="leader.img" fit="contain"></el-image>
               </div>
@@ -30,7 +22,7 @@
         <el-tab-pane label="贵州省领导" name="second">
           <el-row>
             <el-col :span="12">
-              <el-col :span="4" v-for="leader in guizhouLeadersList" :key="leader">
+              <el-col :span="4" v-for="(leader,index)  in guizhouLeadersList" :key="index">
                 <div>
                   <el-image style="width: 100px; height: 100px" :src="leader.img" fit="contain"></el-image>
                 </div>
@@ -76,7 +68,7 @@
       </el-tabs>
     </el-row>
     <el-row>
-      <el-table :data="dataList" style="width: 100%" v-show="dataShow">
+      <el-table :data="dataList" style="width: 100%" v-show="dataShow" v-loading="dataLoading">
         <el-table-column align="left">
           <template slot-scope="scope" width="180">
             <el-row class="h1">{{scope.row.title}}</el-row>
@@ -149,6 +141,7 @@ export default {
     return {
       dataList: [],
       dataShow: false,
+      dataLoading: false,
       centerLeadersList: [
         {
           name: "习近平",
@@ -326,10 +319,12 @@ export default {
   },
   methods: {
     async updateTable(value) {
+      this.dataLoading = true;
       this.dataList = [];
       console.log(value);
       this.dataList = this.mockData;
       this.dataShow = true;
+      this.dataLoading = false;
     },
     async queryOrigin(url) {
       window.open(url);

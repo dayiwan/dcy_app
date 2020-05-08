@@ -1,79 +1,22 @@
 <template>
   <div class="main font-style">
-    <el-row>
-      <el-col :span="4" align="left">
-        <span>更新时间：2020年5月8日</span>
-      </el-col>
-      <el-col :span="4" align="left">
-        <span>更新周期：天</span>
-      </el-col>
-    </el-row>
     <el-divider></el-divider>
     <el-row>
-      <el-tabs value="first" type="card" @tab-click="handleClick">
-        <el-tab-pane label="中央领导" name="first">
-          <el-row>
-            <el-col :span="2" v-for="leader in centerLeadersList" :key="leader">
-              <div>
-                <el-image style="width: 100px; height: 100px" :src="leader.img" fit="contain"></el-image>
-              </div>
-              <div>
-                <el-link
-                  type="primary"
-                  class="title1"
-                  @click="updateTable(leader.name)"
-                >{{leader.name}}</el-link>
-              </div>
-            </el-col>
-          </el-row>
-        </el-tab-pane>
-        <el-tab-pane label="贵州省领导" name="second">
-          <el-row>
-            <el-col :span="12">
-              <el-col :span="4" v-for="leader in guizhouLeadersList" :key="leader">
-                <div>
-                  <el-image style="width: 100px; height: 100px" :src="leader.img" fit="contain"></el-image>
-                </div>
-                <div>
-                  <el-link
-                    type="primary"
-                    class="title1"
-                    @click="updateTable(leader.name)"
-                  >{{leader.name}}</el-link>
-                </div>
-              </el-col>
-            </el-col>
-          </el-row>
-        </el-tab-pane>
-        <el-tab-pane label="地州市领导" name="third">
-          <el-row>
-            <el-col :span="8">
-              <el-table :data="cityLeadersList" style="width: 100%">
-                <el-table-column prop="city" label="地名" align="center"></el-table-column>
-                <el-table-column prop="secretary" label="书记" align="center">
-                  <template slot-scope="scope">
-                    <el-link
-                      type="primary"
-                      class="title1"
-                      @click="updateTable(scope.row.secretary)"
-                    >{{scope.row.secretary}}</el-link>
-                  </template>
-                </el-table-column>
-                <el-table-column prop="mayor" label="市（区、州）长行署专员" align="center">
-                  <template slot-scope="scope">
-                    <el-link
-                      type="primary"
-                      class="title1"
-                      @click="updateTable(scope.row.mayor)"
-                    >{{scope.row.mayor}}</el-link>
-                  </template>
-                </el-table-column>
-              </el-table>
-            </el-col>
-          </el-row>
-        </el-tab-pane>
-        <el-tab-pane label="区县领导" name="fourth">暂无</el-tab-pane>
-      </el-tabs>
+      <el-image
+        style="width: 500px;"
+        src="https://tse1-mm.cn.bing.net/th/id/OIP.NZOFjT7KkMwPEB9cOmmmrAHaEr"
+      ></el-image>
+    </el-row>
+
+    <el-row>
+      <el-col v-for="(item,index) in hotspotList" :key="index" :span="2" align="left">
+        <template>
+          <el-link type="primary" @click="updateTable(item.name)">{{item.name}}</el-link>
+          <i class="el-icon-top" v-if="item.trend=='up'"></i>
+          <i class="el-icon-bottom" v-if="item.trend=='down'"></i>
+        </template>
+        <el-divider direction="vertical"></el-divider>
+      </el-col>
     </el-row>
     <el-row>
       <el-table :data="dataList" style="width: 100%">
@@ -148,138 +91,49 @@ export default {
   data() {
     return {
       dataList: [],
-      centerLeadersList: [
+      hotspotList: [
         {
-          name: "习近平",
-          img: xijinpingImg
+          name: "新冠肺炎",
+          trend: "up"
         },
         {
-          name: "李克强",
-          img: likeqiangImg
+          name: "复工复产",
+          trend: "up"
         },
         {
-          name: "栗战书",
-          img: lizhanshuImg
+          name: "贸易战",
+          trend: "down"
         },
         {
-          name: "汪洋",
-          img: wangyangImg
+          name: "新基建",
+          trend: "up"
         },
         {
-          name: "王沪宁",
-          img: wanghuningImg
+          name: "新冠肺炎",
+          trend: "up"
         },
         {
-          name: "赵乐际",
-          img: zhaolejiImg
+          name: "复工复产",
+          trend: "up"
         },
         {
-          name: "韩正",
-          img: hanzhengImg
+          name: "贸易战",
+          trend: "down"
+        },
+        {
+          name: "新基建",
+          trend: "up"
+        },
+        {
+          name: "贸易战",
+          trend: "down"
+        },
+        {
+          name: "新基建",
+          trend: "up"
         }
       ],
-      guizhouLeadersList: [
-        {
-          name: "孙志刚",
-          img: sunzhigangImg
-        },
-        {
-          name: "谌贻琴",
-          img: chenyiqinImg
-        },
-        {
-          name: "夏红民",
-          img: xiahongminImg
-        },
-        {
-          name: "李邑飞",
-          img: liyifeiImg
-        },
-        {
-          name: "时光辉",
-          img: shiguanghuiImg
-        },
-        {
-          name: "卢雍政",
-          img: luyongzhengImg
-        },
-        {
-          name: "赵德明",
-          img: zhaodemingImg
-        },
-        {
-          name: "刘捷",
-          img: liujieImg
-        },
-        {
-          name: "李再勇",
-          img: lizaiyongImg
-        },
-        {
-          name: "龙长春",
-          img: longchangchunImg
-        },
-        {
-          name: "严朝君",
-          img: yanchaojunImg
-        },
-        {
-          name: "王艳勇",
-          img: wangyanyongImg
-        }
-      ],
-      cityLeadersList: [
-        {
-          city: "贵阳",
-          secretary: "赵德明",
-          mayor: "陈晏"
-        },
-        {
-          city: "遵义",
-          secretary: "魏树旺",
-          mayor: "黄伟"
-        },
-        {
-          city: "六盘水",
-          secretary: "王忠",
-          mayor: "李刚"
-        },
-        {
-          city: "安顺",
-          secretary: "陈训华",
-          mayor: "宋晓路"
-        },
-        {
-          city: "铜仁",
-          secretary: "陈昌旭",
-          mayor: "陈少荣"
-        },
-        {
-          city: "毕节",
-          secretary: "周建琨",
-          mayor: "张集智"
-        },
-        {
-          city: "黔西南",
-          secretary: "刘文新",
-          mayor: "杨永英"
-        },
-        {
-          city: "黔东南",
-          secretary: "桑维亮",
-          mayor: "罗强"
-        },
-        {
-          city: "黔南",
-          secretary: "唐德智",
-          mayor: "吴胜华"
-        },
-        {
-          city: "贵安新区",
-          secretary: "赵德明",
-          mayor: "陈晏"
-        }
-      ],
+
       mockData: [
         {
           title: "习近平同葡萄牙总统德索萨通电话",
@@ -323,9 +177,12 @@ export default {
   mounted() {},
   methods: {
     async updateTable(value) {
+      this.dataLoading = true;
       this.dataList = [];
       console.log(value);
       this.dataList = this.mockData;
+      this.dataShow = true;
+      this.dataLoading = false;
     },
     async queryOrigin(url) {
       window.open(url);
