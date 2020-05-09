@@ -4,28 +4,70 @@ import layout from '../views/Layout/Layout.vue';
 
 Vue.use(VueRouter)
 
-export const routes = [{
-    path: '',
-    name: 'home',
-    component: layout,
-    redirect: '/home',
-    children: [{
-        path: '/home',
-        component: () =>
-            import ('@/views/Home/Home.vue'),
-        meta: { name: '首页', icon: 's-home' }
+export const routes = [
+    {
+        path: '',
+        name: 'home',
+        component: layout,
+        redirect: '/governanceReport',
+        children: [{
+            path: '/governanceReport',
+            component: () =>
+                import('@/views/GovernanceReport/GovernanceReport.vue'),
+            meta: { name: '首页', icon: 's-home' }
+        }]
+    },
+    {
+        path: '',
+        name: 'governanceReport',
+        component: layout,
+        children: [{
+            path: '/governanceReport',
+            component: () =>
+                import('@/views/GovernanceReport/GovernanceReport.vue'),
+            meta: { name: '政务报道', icon: 's-custom' }
+        }]
+    }, {
+        path: '',
+        name: 'mediaHotspots',
+        component: layout,
+        children: [{
+            path: '/mediaHotspots',
+            component: () =>
+                import('@/views/MediaHotspots/MediaHotspots.vue'),
+            meta: { name: '媒体热点', icon: 'hot-water' }
+        }]
+    }, {
+        path: '',
+        name: 'thematicAnalysis',
+        component: layout,
+        children: [{
+            path: '/thematicAnalysis',
+            component: () =>
+                import('@/views/ThematicAnalysis/ThematicAnalysis.vue'),
+            meta: { name: '专题分析', icon: 'search' }
+        }]
+    }, {
+        path: '',
+        name: 'regionNews',
+        component: layout,
+        children: [{
+            path: '/regionNews',
+            component: () =>
+                import('@/views/RegionNews/RegionNews.vue'),
+            meta: { name: '地域新闻', icon: 'map-location' }
+        }]
+    }, {
+        path: '',
+        name: 'regionNews',
+        component: layout,
+        children: [{
+            path: '/regionNews',
+            component: () =>
+                import('@/views/RegionNews/RegionNews.vue'),
+            meta: { name: '传播路径', icon: 'share' }
+        }]
     }]
-}, {
-    path: '',
-    name: 'index',
-    component: layout,
-    children: [{
-        path: '/dataResource',
-        component: () =>
-            import ('@/views/DataResource/DataResource.vue'),
-        meta: { name: '数据资源', icon: 's-grid' }
-    }]
-}]
 
 const router = new VueRouter({
     mode: 'hash',

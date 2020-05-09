@@ -1,29 +1,31 @@
 <template>
   <div id="sidebar">
-    <img src="@/assets/logo.png">
-    <router-link 
-    class="sidebar-item" 
-    v-for="(route, index) in routes" 
-    :key="index" 
-    :to="route.children[0].path"
-    active-class="active">
-     <i :class="`el-icon-${route.children[0].meta.icon}`"></i>  {{ route.children[0].meta.name }}
+    <img src="@/assets/logo.png" />
+    <router-link
+      class="sidebar-item"
+      v-for="(route, index) in routes"
+      :key="index"
+      :to="route.children[0].path"
+      active-class="active"
+    >
+      <i :class="`el-icon-${route.children[0].meta.icon}`"></i>
+      {{ route.children[0].meta.name }}
     </router-link>
   </div>
 </template>
 
 <script>
-import { routes } from '@/router';
+import { routes } from "@/router";
 export default {
   data() {
     return {
-       routes
-    }
+      routes
+    };
   },
   mounted() {
-    console.log(this.routes)
+    console.log(this.routes);
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -32,6 +34,7 @@ export default {
   height: 100%;
   background-color: black;
   text-align: left;
+  margin-right: 20px;
 
   img {
     height: 60px;
@@ -46,7 +49,7 @@ export default {
     position: relative;
 
     &::before {
-      content: '';
+      content: "";
       width: 6px;
       height: 100%;
       position: absolute;
