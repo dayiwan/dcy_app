@@ -2,7 +2,7 @@
   <div class="main font-style">
     <el-divider></el-divider>
     <el-row>
-      <el-tabs type="border-card" @tab-click="changeTab" v-model="currentTheme">
+      <el-tabs   type="border-card" @tab-click="changeTab" v-model="name">
         <el-tab-pane
           v-for="(item,index) in themeList"
           :key="index"
@@ -66,7 +66,7 @@ export default {
   data() {
     return {
       dataList: [],
-      currentTheme: "",
+      name: "复工复产",
       themeList: [
         {
           name: "复工复产"
@@ -122,7 +122,10 @@ export default {
       ]
     };
   },
-  mounted() {},
+  mounted() {
+    this.dataList = this.mockData;
+      this.dataShow = true;
+  },
   methods: {
     async updateTable(value) {
       this.dataLoading = true;

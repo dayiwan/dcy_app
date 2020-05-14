@@ -2,13 +2,8 @@
   <div class="main font-style">
     <el-divider></el-divider>
     <el-row>
-      <el-tabs type="border-card" @tab-click="changeTab" v-model="currentTheme">
-        <el-tab-pane
-          v-for="(item,index) in themeList"
-          :key="index"
-          :label="item.name"
-          :name="item.name"
-        >
+      <el-tabs type="border-card" @tab-click="changeTab" v-model="name">
+        <el-tab-pane v-for="(item,index) in themeList" :key="index" :label="item.name" :name="item.name">
           <el-row>
             <el-table :data="dataList" style="width: 100%">
               <el-table-column align="left">
@@ -66,7 +61,7 @@ export default {
   data() {
     return {
       dataList: [],
-      currentTheme: "",
+      name: "周边省市",
       themeList: [
         {
           name: "周边省市"
@@ -143,7 +138,10 @@ export default {
       ]
     };
   },
-  mounted() {},
+  mounted() {
+    this.dataList = this.mockData;
+    this.dataShow = true;
+  },
   methods: {
     async updateTable(value) {
       this.dataLoading = true;

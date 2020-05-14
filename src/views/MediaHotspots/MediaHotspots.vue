@@ -2,10 +2,7 @@
   <div class="main font-style">
     <el-divider></el-divider>
     <el-row>
-      <el-image
-        style="width: 500px;"
-        src="https://tse1-mm.cn.bing.net/th/id/OIP.NZOFjT7KkMwPEB9cOmmmrAHaEr"
-      ></el-image>
+      <el-image style="width: 500px;" src="https://tse1-mm.cn.bing.net/th/id/OIP.NZOFjT7KkMwPEB9cOmmmrAHaEr"></el-image>
     </el-row>
 
     <el-row>
@@ -174,7 +171,10 @@ export default {
       ]
     };
   },
-  mounted() {},
+  mounted() {
+    this.dataList = this.mockData;
+    this.dataShow = true;
+  },
   methods: {
     async updateTable(value) {
       this.dataLoading = true;
@@ -207,5 +207,9 @@ export default {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   font: 14px Base;
+}
+.el-col-2{
+  display: flex;
+  align-items: center
 }
 </style>
