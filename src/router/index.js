@@ -5,24 +5,25 @@ import layout from '../views/Layout/Layout.vue'
 Vue.use(VueRouter)
 
 export const routes = [
-//   {
-//     path: '',
-//     name: 'home',
-//     component: layout,
-//     redirect: '/governanceReport',
-//     children: [
-//       {
-//         path: '/governanceReport',
-//         component: () =>
-//           import('@/views/GovernanceReport/GovernanceReport.vue'),
-//         meta: { name: '首页', icon: 's-home' }
-//       }
-//     ]
-//   },
+  // {
+  //   path: '',
+  //   name: 'home',
+  //   component: layout,
+  //   redirect: '/governanceReport',
+  //   children: [
+  //     {
+  //       path: '/governanceReport',
+  //       component: () =>
+  //         import('@/views/GovernanceReport/GovernanceReport.vue'),
+  //       meta: { name: '首页', icon: 's-home' }
+  //     }
+  //   ]
+  // },
   {
     path: '',
     name: 'home',
     component: layout,
+     redirect: '/governanceReport',
     children: [
       {
         path: '/governanceReport',
@@ -71,11 +72,11 @@ export const routes = [
   },
   {
     path: '',
-    name: 'regionNews',
+    name: 'propagationPath',
     component: layout,
     children: [
       {
-        path: '/regionNews',
+        path: '/propagationPath',
         component: () => import('@/views/RegionNews/RegionNews.vue'),
         meta: { name: '传播路径', icon: 'share' }
       }

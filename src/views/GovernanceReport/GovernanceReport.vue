@@ -76,7 +76,7 @@
                     <el-link
                       type="primary"
                       class="title1"
-                      @click="updateTable(scope.row.secretary)"
+                      @click="updateTable(scope.row.secretary, scope.row.city)"
                       >{{ scope.row.secretary }}</el-link
                     >
                   </template>
@@ -90,7 +90,7 @@
                     <el-link
                       type="primary"
                       class="title1"
-                      @click="updateTable(scope.row.mayor)"
+                      @click="updateTable(scope.row.mayor, scope.row.city)"
                       >{{ scope.row.mayor }}</el-link
                     >
                   </template>
@@ -142,6 +142,7 @@
         layout="prev, pager, next"
         :total="total"
         :page-size="pagesize"
+        :current-page="currentPage"
         @current-change="currentChange"
       >
       </el-pagination>
@@ -199,13 +200,16 @@ Vue.use(Link)
 export default {
   data() {
     return {
-      total: 10,
+      currentPage: 1,
+      total: 0,
       pagesize: 5,
       from_a: 0,
       activeName: 'first',
       dataList: [],
       dataShow: false,
       dataLoading: false,
+      main_a: '中央领导',
+      name_a: '习近平',
       centerLeadersList: [
         {
           name: '习近平',
@@ -337,70 +341,20 @@ export default {
           secretary: '赵德明',
           mayor: '陈晏'
         }
-      ],
-      initData: [
-        {
-          title: '习近平同葡萄牙总统德索萨通电话',
-          content:
-            '新华社北京5月7日电  国家主席习近平5月7日晚同葡萄牙总统德索萨通电话。习近平强调，新冠肺炎疫情发生后，你来函向中国人民表达慰问，我对此表示感谢。中葡同心共济，中方坚定支持葡方抗击疫情的努力，愿继续提供力所能及的帮助，积极协助葡方在华采购运输医疗物资。希望疫情过后，双方深化各领域合作，推进共建“一带一路”，探索公共卫生等领域三方合作，推动中葡全面战略伙伴关系得到更大发展。我珍视同你的友谊，愿同你...',
-          publicTime: '2020年5月7日',
-          collectTime: '2020年5月7日',
-          source: '人民网',
-          url: 'http://www.baidu.com'
-        }
-      ],
-      mockData: [
-        {
-          title: '习近平同葡萄牙总统德索萨通电话',
-          content:
-            '新华社北京5月7日电  国家主席习近平5月7日晚同葡萄牙总统德索萨通电话。习近平强调，新冠肺炎疫情发生后，你来函向中国人民表达慰问，我对此表示感谢。中葡同心共济，中方坚定支持葡方抗击疫情的努力，愿继续提供力所能及的帮助，积极协助葡方在华采购运输医疗物资。希望疫情过后，双方深化各领域合作，推进共建“一带一路”，探索公共卫生等领域三方合作，推动中葡全面战略伙伴关系得到更大发展。我珍视同你的友谊，愿同你...',
-          publicTime: '2020年5月7日',
-          collectTime: '2020年5月7日',
-          source: '人民网',
-          url: 'http://www.baidu.com'
-        },
-        {
-          title: '习近平同葡萄牙总统德索萨通电话',
-          content:
-            '新华社北京5月7日电  国家主席习近平5月7日晚同葡萄牙总统德索萨通电话。习近平强调，新冠肺炎疫情发生后，你来函向中国人民表达慰问，我对此表示感谢。中葡同心共济，中方坚定支持葡方抗击疫情的努力，愿继续提供力所能及的帮助，积极协助葡方在华采购运输医疗物资。希望疫情过后，双方深化各领域合作，推进共建“一带一路”，探索公共卫生等领域三方合作，推动中葡全面战略伙伴关系得到更大发展。我珍视同你的友谊，愿同你...',
-          publicTime: '2020年5月7日',
-          collectTime: '2020年5月7日',
-          source: '人民网',
-          url: 'http://www.baidu.com'
-        },
-        {
-          title: '习近平同葡萄牙总统德索萨通电话',
-          content:
-            '新华社北京5月7日电  国家主席习近平5月7日晚同葡萄牙总统德索萨通电话。习近平强调，新冠肺炎疫情发生后，你来函向中国人民表达慰问，我对此表示感谢。中葡同心共济，中方坚定支持葡方抗击疫情的努力，愿继续提供力所能及的帮助，积极协助葡方在华采购运输医疗物资。希望疫情过后，双方深化各领域合作，推进共建“一带一路”，探索公共卫生等领域三方合作，推动中葡全面战略伙伴关系得到更大发展。我珍视同你的友谊，愿同你...',
-          publicTime: '2020年12月30日',
-          collectTime: '2020年5月7日',
-          source: '人民网',
-          url: 'http://www.baidu.com'
-        },
-        {
-          title: '习近平同葡萄牙总统德索萨通电话',
-          content:
-            '新华社北京5月7日电  国家主席习近平5月7日晚同葡萄牙总统德索萨通电话。习近平强调，新冠肺炎疫情发生后，你来函向中国人民表达慰问，我对此表示感谢。中葡同心共济，中方坚定支持葡方抗击疫情的努力，愿继续提供力所能及的帮助，积极协助葡方在华采购运输医疗物资。希望疫情过后，双方深化各领域合作，推进共建“一带一路”，探索公共卫生等领域三方合作，推动中葡全面战略伙伴关系得到更大发展。我珍视同你的友谊，愿同你...',
-          publicTime: '2020年5月7日',
-          collectTime: '2020年5月7日',
-          source: '人民网',
-          url: 'http://www.baidu.com'
-        }
       ]
     }
   },
-   mounted() {
+  mounted() {
     this.initList()
   },
   methods: {
     async initList() {
-      console.log(this.from_a)
       let params = {
         query: {
           bool: {
             must: {
               match_phrase: {
-                subject: '中央领导-习近平'
+                subject: this.main_a + '-' + this.name_a
               }
             }
           }
@@ -408,58 +362,62 @@ export default {
         from: this.from_a,
         size: this.pagesize
       }
-       console.log(params)
-      this.dataList = this.mockData
       let result = await getList(params)
-      // this.dataList = this.mockData;
-      console.log(result)
       this.dataList = result.hits.hits
       this.total = result.hits.total
       this.dataShow = true
     },
     // 点击名称更新mock数据
-    async updateTable(value) {
-      this.dataLoading = true
-      this.dataList = []
-      console.log(value)
-      this.dataList = this.mockData
-      this.dataShow = true
-      this.dataLoading = false
+    async updateTable(name, city) {
+      if (city === '' || city === undefined) {
+        this.currentPage = 1
+        this.from_a = 0
+        this.name_a = name
+        this.initList()
+      } else {
+        this.currentPage = 1
+        this.from_a = 0
+        this.name_a = city + '-' + name
+        this.initList()
+      }
     },
     //点击查看原文
     async queryOrigin(url) {
       window.open(url)
     },
     async currentChange(v) {
-      if (v == 1) {
-        this.from = 0
+      this.currentPage = v
+      if (v === 1) {
+        this.from_a = 0
         this.initList()
       } else {
-
-        this.from_a = v * 5
-        console.log(this.from_a)
-         this.initList()
+        this.from_a = v * 5 - 5
+        this.initList()
       }
     },
     // 点击tab
     async changeTab() {
-      console.log(this.activeName)
+      this.currentPage = 1
+      this.from_a = 0
       //判断不同的tab拉出初始化的列表
       if (this.activeName === 'first') {
-        console.log(this.activeName)
+        this.main_a = '中央领导'
+        this.name_a = '习近平'
+        this.initList()
         this.dataShow = true
-        this.dataList = this.initData
       } else if (this.activeName === 'second') {
-        console.log(this.activeName)
+        this.main_a = '贵州省领导'
+        this.name_a = '孙志刚'
+        this.initList()
         this.dataShow = true
-        this.dataList = this.initData
       } else if (this.activeName === 'third') {
-        console.log(this.activeName)
+        this.main_a = '地州市领导'
+        this.name_a = '贵阳-赵德明'
+        this.initList()
         this.dataShow = true
-        this.dataList = this.initData
       } else {
+        this.main_a = '区县领导'
         this.dataList = []
-        this.dataShow = true
       }
     }
   }

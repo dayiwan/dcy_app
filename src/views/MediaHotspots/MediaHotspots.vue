@@ -73,6 +73,8 @@ import lizaiyongImg from "@/assets/leaders/lizaiyong.jpg";
 import longchangchunImg from "@/assets/leaders/longchangchun.jpg";
 import yanchaojunImg from "@/assets/leaders/yanchaojun.jpg";
 import wangyanyongImg from "@/assets/leaders/wangyanyong.jpg";
+import { Report } from '@/actions'
+const { getList } = Report
 import "element-ui/lib/theme-chalk/index.css";
 Vue.use(Button);
 Vue.use(Divider);
@@ -88,6 +90,7 @@ export default {
   data() {
     return {
       dataList: [],
+      subject_a:'',
       hotspotList: [
         {
           name: "新冠肺炎",
@@ -172,10 +175,30 @@ export default {
     };
   },
   mounted() {
-    this.dataList = this.mockData;
+    this.initList()
+    // this.dataList = this.mockData;
     this.dataShow = true;
   },
   methods: {
+     async initList() {
+      let params = {
+        query: {
+          bool: {
+            must: {
+              match_phrase: {
+                subject: this.subject_a
+              }
+            }
+          }
+        },
+        from: this.from_a,
+        size: this.pagesize
+      }
+      let result = await getList(params)
+      this.dataList = result.hits.hits
+      this.total = result.hits.total
+      this.dataShow = true
+    },
     async updateTable(value) {
       this.dataLoading = true;
       this.dataList = [];
