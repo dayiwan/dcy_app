@@ -25,7 +25,9 @@
                 <template slot-scope="scope">
                   <el-row>发布时间：{{ scope.row._source.create_time }}</el-row>
                   <el-row
-                    >采集时间：{{ scope.row._source.collect_date }}</el-row
+                    >采集时间：{{
+                      formatdata(scope.row._source.collect_date)
+                    }}</el-row
                   >
                   <el-row>来源：{{ scope.row._source.source }}</el-row>
                 </template>
@@ -72,6 +74,7 @@ import {
   Link
 } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import moment from 'moment'
 import { Report } from '@/actions'
 const { getList } = Report
 Vue.use(Button)
@@ -120,13 +123,17 @@ export default {
         {
           name: '贵安新区'
         }
-      ],
+      ]
     }
   },
   mounted() {
+    console.log(moment())
     this.initList()
   },
   methods: {
+    formatdata(data) {
+      return moment(data).format('YYYY-MM-DD')
+    },
     async initList() {
       let params = {
         query: {

@@ -24,7 +24,11 @@
               <el-table-column align="left" width="200">
                 <template slot-scope="scope">
                   <el-row>发布时间：{{ scope.row._source.create_time }}</el-row>
-                  <el-row>采集时间：{{ scope.row.collect_date }}</el-row>
+                  <el-row
+                    >采集时间：{{
+                      formatdata(scope.row._source.collect_date)
+                    }}</el-row
+                  >
                   <el-row>来源：{{ scope.row._source.source }}</el-row>
                 </template>
               </el-table-column>
@@ -69,6 +73,7 @@ import {
 } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import { Report } from '@/actions'
+import moment from 'moment'
 const { getList } = Report
 Vue.use(Button)
 Vue.use(Divider)
@@ -105,6 +110,9 @@ export default {
     this.initList()
   },
   methods: {
+    formatdata(data) {
+      return moment(data).format('YYYY-MM-DD')
+    },
     async initList() {
       let params = {
         query: {

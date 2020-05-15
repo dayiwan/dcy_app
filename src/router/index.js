@@ -33,18 +33,18 @@ export const routes = [
       }
     ]
   },
-  {
-    path: '',
-    name: 'mediaHotspots',
-    component: layout,
-    children: [
-      {
-        path: '/mediaHotspots',
-        component: () => import('@/views/MediaHotspots/MediaHotspots.vue'),
-        meta: { name: '媒体热点', icon: 'hot-water' }
-      }
-    ]
-  },
+  // {
+  //   path: '',
+  //   name: 'mediaHotspots',
+  //   component: layout,
+  //   children: [
+  //     {
+  //       path: '/mediaHotspots',
+  //       component: () => import('@/views/MediaHotspots/MediaHotspots.vue'),
+  //       meta: { name: '媒体热点', icon: 'hot-water' }
+  //     }
+  //   ]
+  // },
   {
     path: '',
     name: 'thematicAnalysis',
@@ -70,18 +70,18 @@ export const routes = [
       }
     ]
   },
-  {
-    path: '',
-    name: 'propagationPath',
-    component: layout,
-    children: [
-      {
-        path: '/propagationPath',
-        component: () => import('@/views/RegionNews/RegionNews.vue'),
-        meta: { name: '传播路径', icon: 'share' }
-      }
-    ]
-  }
+  // {
+  //   path: '',
+  //   name: 'propagationPath',
+  //   component: layout,
+  //   children: [
+  //     {
+  //       path: '/propagationPath',
+  //       component: () => import('@/views/RegionNews/RegionNews.vue'),
+  //       meta: { name: '传播路径', icon: 'share' }
+  //     }
+  //   ]
+  // }
 ]
 
 const router = new VueRouter({

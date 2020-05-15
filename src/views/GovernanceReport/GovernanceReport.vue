@@ -122,7 +122,11 @@
         <el-table-column align="left" width="200">
           <template slot-scope="scope">
             <el-row>发布时间：{{ scope.row._source.create_time }}</el-row>
-            <el-row>采集时间：{{ scope.row._source.collect_date }}</el-row>
+            <el-row
+              >采集时间：{{
+                formatdata(scope.row._source.collect_date)
+              }}</el-row
+            >
             <el-row>来源：{{ scope.row._source.source }}</el-row>
           </template>
         </el-table-column>
@@ -183,6 +187,7 @@ import lizaiyongImg from '@/assets/leaders/lizaiyong.jpg'
 import longchangchunImg from '@/assets/leaders/longchangchun.jpg'
 import yanchaojunImg from '@/assets/leaders/yanchaojun.jpg'
 import wangyanyongImg from '@/assets/leaders/wangyanyong.jpg'
+import moment from 'moment'
 import { Report } from '@/actions'
 const { getList } = Report
 import 'element-ui/lib/theme-chalk/index.css'
@@ -348,6 +353,9 @@ export default {
     this.initList()
   },
   methods: {
+    formatdata(data) {
+      return moment(data).format('YYYY-MM-DD')
+    },
     async initList() {
       let params = {
         query: {
